@@ -4,14 +4,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import userReducer from "./redux/reducers/UserReducer";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore } from "redux";
+
+const store = createStore(userReducer, composeWithDevTools());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
 
 reportWebVitals();

@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import UserList from "./UserList";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-// Margin
-// Margin top: mt-value
-// Margin right: me-value
-// Margin bottom: mb-value
-// Margin left: ms-value
-
-// Padding
-// Padding top: pt-value
-// Padding right: pe-value
-// Padding bottom: pb-value
-// Paddig left: ps-value.
-// Where the range for the value is 0 to 5
 const AddUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
 
+  //to get the state from redux store
+  const contacts = useSelector((state) => state);
+  //used to dispatch an action.
+  const dispatch = useDispatch();
+  //return a function that lets you navigate programmatically
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
+    e.preventDefault();
     //todo
 
     if (!email || !number || !name) {

@@ -11,7 +11,7 @@ function App() {
         <ToastContainer />
         <Navbar />
         <AddUser />
-        {/* <UserList /> */}
+        <UserList />
       </BrowserRouter>
     </div>
   );
