@@ -1,15 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AddUser from "./AddUser";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const UserList = () => {
   const users = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const deleteUser = (id) => {
+    dispatch({ type: "DELETE_USER", payload: id });
+    toast.success("User deleted successfully!");
+  };
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-12 my-5 text-right">{/* <AddUser /> */}</div>
+      <div className="row ">
+        <div className="col-md-12 my-4 text-right">{/* <AddUser /> */}</div>
         <div className="col-md-10 mx-auto my-4">
           <table className="table table-hover">
             <thead className="text-white bg-dark text-center">
@@ -35,7 +42,11 @@ const UserList = () => {
                     >
                       Edit
                     </Link>
-                    <button type="button" className="btn btn-small btn-danger">
+                    <button
+                      type="button"
+                      onClick={() => deleteUser(user.id)}
+                      className="btn btn-small btn-danger"
+                    >
                       Delete
                     </button>
                   </td>

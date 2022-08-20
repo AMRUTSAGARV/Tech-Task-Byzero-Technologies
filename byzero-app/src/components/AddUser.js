@@ -47,7 +47,7 @@ const AddUser = () => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row  p-4">
         <div className="col-md-6 shadow mx-auto p-5">
           <form onSubmit={handleSubmit}>
             <div className="form-group my-2">
@@ -62,7 +62,7 @@ const AddUser = () => {
             <div className="form-group my-2">
               <input
                 type="text"
-                placeholder="email"
+                placeholder="Email"
                 className="form-control"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
