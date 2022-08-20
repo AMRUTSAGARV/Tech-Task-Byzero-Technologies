@@ -10,7 +10,7 @@ const AddUser = () => {
   const [number, setNumber] = useState("");
 
   //to get the state from redux store
-  const contacts = useSelector((state) => state);
+  const users = useSelector((state) => state);
   //used to dispatch an action.
   const dispatch = useDispatch();
   //return a function that lets you navigate programmatically
@@ -20,9 +20,29 @@ const AddUser = () => {
     e.preventDefault();
     //todo
 
+    const checkEmail = users.find((user) => user.email === email && user);
+    const checkNumber = users.find((user) => user.number === parseInt(number));
+
     if (!email || !number || !name) {
+      //toast help us to trigger the ToastContainer
+
       return toast.warning("Please fill in all fields!");
     }
+    if (checkEmail) {
+      return toast.error("This email already exists!");
+    }
+    if (checkNumber) {
+      return toast.error("This number laready exists!");
+    }
+    const data = {
+      id: users[users.length - 1].id + 1,
+      name,
+      email,
+      number,
+    };
+    dispatch({ type: "ADD_USER", payload: data });
+    toast.success("User added succesfully");
+    navigate("/");
   };
 
   return (

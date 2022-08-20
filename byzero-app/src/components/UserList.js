@@ -4,7 +4,7 @@ import AddUser from "./AddUser";
 import { useSelector } from "react-redux";
 
 const UserList = () => {
-  const contacts = useSelector((state) => state);
+  const users = useSelector((state) => state);
 
   return (
     <div className="container">
@@ -22,15 +22,15 @@ const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {contacts.map((contact, id) => (
+              {users.map((user, id) => (
                 <tr key={id}>
                   <td>{id + 1}</td>
-                  <td>{contact.name}</td>
-                  <td>{contact.email}</td>
-                  <td>{contact.number}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.number}</td>
                   <td>
                     <Link
-                      to={`/edit/${contact.id}`}
+                      to={`/edit/${user.id}`}
                       className="btn btn-small btn-primary mx-2"
                     >
                       Edit
